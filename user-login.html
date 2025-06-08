@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>User Login</h2>
+        <form id="userLoginForm">
+            <input type="text" id="accountNumber" placeholder="Enter Account Number" required>
+            <input type="password" id="userPassword" placeholder="Enter Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("userLoginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let accountNumber = document.getElementById("accountNumber").value;
+            let password = document.getElementById("userPassword").value;
+
+            // Check if account exists in Local Storage
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let user = users.find(u => u.accountNumber === accountNumber && u.password === password);
+
+            if (user) {
+                localStorage.setItem("loggedInUser", JSON.stringify(user)); // Store session
+                window.location.href = "details.html"; // Redirect to User Dashboard
+            } else {
+                alert("Invalid Account Number or Password!");
+            }
+        });
+    </script>
+</body>
+</html>

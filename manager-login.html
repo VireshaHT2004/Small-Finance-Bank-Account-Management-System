@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Manager Login</h2>
+        <form id="managerLoginForm">
+            <input type="text" id="managerId" placeholder="Enter Manager ID" required>
+            <input type="password" id="managerPassword" placeholder="Enter Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("managerLoginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let managerId = document.getElementById("managerId").value;
+            let password = document.getElementById("managerPassword").value;
+            
+            // Static Manager Credentials (Change as needed)
+            if (managerId === "admin" && password === "1234") {
+                window.location.href = "register.html"; // Redirect to Account Registration
+            } else {
+                alert("Invalid Manager Credentials!");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Account Details</h2>
+        <div id="customerDetails"></div>
+        <a href="credit.html" class="button">Credit</a>
+        <a href="debit.html" class="button">Debit</a>
+        <a href="dashboard.html" class="button">Go to Dashboard</a>
+    </div>
+
+    <script>
+        let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+        if (!loggedInUser) {
+            document.getElementById("customerDetails").innerHTML = "<p>No account found!</p>";
+        } else {
+            document.getElementById("customerDetails").innerHTML = `
+                <p><strong>Name:</strong> ${loggedInUser.name}</p>
+                <p><strong>Date of Birth:</strong> ${loggedInUser.dob}</p>
+                <p><strong>Phone Number:</strong> ${loggedInUser.phone}</p>
+                <p><strong>Father's Name:</strong> ${loggedInUser.fatherName}</p>
+                <p><strong>Mother's Name:</strong> ${loggedInUser.motherName}</p>
+                <p><strong>Address:</strong> ${loggedInUser.address}</p>
+                <p><strong>Aadhar Number:</strong> ${loggedInUser.aadhar}</p>
+                <p><strong>City:</strong> ${loggedInUser.city}</p>
+                <p><strong>District:</strong> ${loggedInUser.district}</p>
+                <p><strong>Country:</strong> ${loggedInUser.country}</p>
+                <p><strong>Village:</strong> ${loggedInUser.village}</p>
+                <p><strong>Account Number:</strong> ${loggedInUser.accountNumber}</p>
+                <p><strong>Balance:</strong> ₹${loggedInUser.balance}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

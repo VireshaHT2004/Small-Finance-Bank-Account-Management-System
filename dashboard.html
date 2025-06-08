@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to Your Dashboard</h2>
+        <p><strong>Name:</strong> <span id="displayName"></span></p>
+        <p><strong>Account Number:</strong> <span id="displayAccountNumber"></span></p>
+        <p><strong>Balance:</strong> ₹<span id="displayBalance"></span></p>
+        
+        <a href="index.html" class="button">Logout</a>
+    </div>
+
+    <script>
+        let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+        if (!loggedInUser) {
+            alert("No user logged in!");
+            window.location.href = "index.html"; // Redirect to home if not logged in
+        } else {
+            document.getElementById("displayName").innerText = loggedInUser.name;
+            document.getElementById("displayAccountNumber").innerText = loggedInUser.accountNumber;
+            document.getElementById("displayBalance").innerText = loggedInUser.balance;
+        }
+    </script>
+</body>
+</html>

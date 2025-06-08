@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debit Money</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Debit Money</h2>
+    <input type="number" id="debitAmount" placeholder="Enter amount">
+    <button onclick="debitMoney()">Debit</button>
+    <p id="message"></p>
+
+    <script>
+        function debitMoney() {
+            let amount = parseFloat(document.getElementById("debitAmount").value);
+            let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+            if (!loggedInUser) {
+                alert("No user logged in!");
+                return;
+            }
+
+            if (isNaN(amount) || amount <= 0) {
+                alert("Invalid amount!");
+                return;
+            }
+
+            if (amount > loggedInUser.balance) {
+                alert("Insufficient balance!");
+                return;
+            }
+
+            // Update balance
+            loggedInUser.balance -= amount;
+
+            // Save updated user data
+            localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+
+            // Update main user storage
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let updatedUsers = users.map(user => 
+                user.accountNumber === loggedInUser.accountNumber ? loggedInUser : user
+            );
+            localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+            alert("Amount debited successfully!");
+            window.location.href = "details.html"; // Redirect to details page
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Account Registration</h2>
+        <form id="registrationForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="date" id="dob" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <input type="text" id="fatherName" placeholder="Father's Name" required>
+            <input type="text" id="motherName" placeholder="Mother's Name" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="text" id="aadhar" placeholder="Aadhar Number" required>
+            <input type="text" id="city" placeholder="City" required>
+            <input type="text" id="district" placeholder="District" required>
+            <input type="text" id="country" placeholder="Country" required>
+            <input type="text" id="village" placeholder="Village" required>
+            <input type="password" id="password" placeholder="Create Password" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById("name").value;
+            let dob = document.getElementById("dob").value;
+            let phone = document.getElementById("phone").value;
+            let fatherName = document.getElementById("fatherName").value;
+            let motherName = document.getElementById("motherName").value;
+            let address = document.getElementById("address").value;
+            let aadhar = document.getElementById("aadhar").value;
+            let city = document.getElementById("city").value;
+            let district = document.getElementById("district").value;
+            let country = document.getElementById("country").value;
+            let village = document.getElementById("village").value;
+            let password = document.getElementById("password").value;
+
+            let accountNumber = "ACC" + Math.floor(100000 + Math.random() * 900000); // Generate random account number
+            let balance = 0; // Initial balance
+
+            let user = {
+                name, dob, phone, fatherName, motherName, address, aadhar, city, district, country, village,
+                accountNumber, password, balance
+            };
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+
+            localStorage.setItem("loggedInUser", JSON.stringify(user)); // Store session
+
+            alert("Registration Successful! Your Account Number: " + accountNumber);
+            window.location.href = "dashboard.html"; // Redirect to Dashboard
+        });
+    </script>
+</body>
+</html>

@@ -19,14 +19,3 @@ A simple and interactive web-based Bank Account Management System built using **
 - **LocalStorage** – Temporary data persistence
 - **VS Code** – Development IDE
 
-## 📁 Folder Structure
-src/
-├── components/
-│ ├── Home.js
-│ ├── Register.js
-│ ├── Login.js
-│ ├── Dashboard.js
-│ ├── Credit.js
-│ └── Debit.js
-├── App.js
-└── index.js
